@@ -1,6 +1,8 @@
 import express from 'express'
 import { createServer } from 'http'
-import 'dotenv/config'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 function startApp(){
     try {
@@ -16,4 +18,22 @@ function startApp(){
     }
 }
 
+export const app = express();
+
+app.use(express.json())
+
+export async function startWebServer() {
+    return new Promise((resolve, reject) => {
+        app.listen(process.env.PORT, () => {
+            console.log(`Server listening on port ${process.env.PORT}`);
+            resolve(null);
+        });
+    });
+}
+
 startApp();
+
+
+
+
+
