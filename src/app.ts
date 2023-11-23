@@ -1,10 +1,9 @@
 import express from 'express'
 import { createServer } from 'http'
-import dotenv from 'dotenv'
+import 'dotenv/config'
+import { startDatabase } from './services/database/app-data-source';
 
-dotenv.config()
-
-function startApp(){
+async function startApp(){
     try {
         const app = express();
         app.use(express.json());
@@ -13,24 +12,11 @@ function startApp(){
         server.listen(process.env.PORT, () => {
             console.log('Servidor rodando na porta', process.env.PORT)
         })
+        await startDatabase()
     } catch (error) {
         console.log(error)
     }
 }
-
-export const app = express();
-
-app.use(express.json())
-
-export async function startWebServer() {
-    return new Promise((resolve, reject) => {
-        app.listen(process.env.PORT, () => {
-            console.log(`Server listening on port ${process.env.PORT}`);
-            resolve(null);
-        });
-    });
-}
-
 startApp();
 
 

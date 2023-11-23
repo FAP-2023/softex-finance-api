@@ -15,6 +15,7 @@ export const AppDataSource = new DataSource({
 export async function startDatabase() {
     try {
         await AppDataSource.initialize();
+        console.log('Database conectado')
     } catch (error) {
         console.error(error, "Erro initialing database");
         throw error;
