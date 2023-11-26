@@ -1,5 +1,5 @@
 import { DataSource } from "typeorm"
-import { User } from "../../entites/user.entities";
+import { User } from "../../entites/user.entity";
 
 console.log(process.env.DATABASE_PASSWORD, "process.env.DATABASE_PASSWORD");
 export const AppDataSource = new DataSource({
