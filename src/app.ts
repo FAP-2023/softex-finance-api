@@ -2,6 +2,7 @@ import express from 'express'
 import { createServer } from 'http'
 import 'dotenv/config'
 import { startDatabase } from './services/database/app-data-source';
+import "reflect-metadata"
 
 async function startApp(){
     try {
