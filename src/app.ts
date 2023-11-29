@@ -3,7 +3,8 @@ import { createServer } from 'http'
 import 'dotenv/config'
 import { startDatabase } from './services/database/app-data-source';
 import "reflect-metadata"
-import { UserRoutes } from './routes/user.routes';
+import { UserRoutes } from './routes/user.route';
+import { authRoutes } from './routes/auth.route';
 
 
 
@@ -11,7 +12,8 @@ async function startApp(){
     try {
         const app = express();
         app.use(express.json());
-        app.use("/users", UserRoutes);
+        app.use("/users", UserRoutes());
+        app.use('/', authRoutes())
         app.use(express.urlencoded({extended:true}))
         const server = createServer(app);
         server.listen(process.env.PORT, () => {
