@@ -3,21 +3,19 @@ import { AppDataSource } from "./database/app-data-source";
 import bcrypt from "bcrypt";
 import "dotenv/config";
 import jwt from "jsonwebtoken";
+import { UserRepository } from "../repositories/user.repository";
+import { Repository } from "typeorm";
 
 class AuthService {
 	private userRepository;
 
-	constructor() {
-		this.userRepository = AppDataSource.getRepository(User);
+	constructor(userRepository:UserRepository) {
+		this.userRepository = userRepository;
 	}
 
 	async handleLogin(email: string, password: string) {
 		try {
-			const foundUser = await this.userRepository.findOne({
-				where: {
-					email: email,
-				},
-			});
+			const foundUser = await this.userRepository.findOneByEmail(email);
 
 			if (!foundUser) {
 				throw new Error("User not found");
@@ -48,6 +46,3 @@ class AuthService {
 		}
 	}
 }
-
-
-export const authService = new AuthService();

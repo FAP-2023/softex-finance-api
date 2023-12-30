@@ -3,6 +3,13 @@ import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedCol
 
 @Entity("users")
 export class User{
+
+    constructor(email:string, password:string, name:string){
+        this.name = name;
+        this.email = email;
+        this.password_hash = password;
+    }
+
     @PrimaryGeneratedColumn()
     id:number;
 
