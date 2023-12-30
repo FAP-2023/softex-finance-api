@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 import { UserRepository } from "../repositories/user.repository";
 import { Repository } from "typeorm";
 
-class AuthService {
+export class AuthService {
 	private userRepository;
 
 	constructor(userRepository:UserRepository) {
@@ -28,7 +28,7 @@ class AuthService {
 			if (!passwordComparing) {
 				throw new Error("Passwords dont match");
 			}
-			const token = await jwt.sign(
+			const token = jwt.sign(
 				{
 					user: {
 						id: foundUser.id,
