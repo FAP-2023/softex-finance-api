@@ -1,15 +1,17 @@
 import { AuthController } from "../controllers/auth.controller";
 import { AuthService } from "../services/auth.service";
+import { UserRepository } from "../repositories/user.repository";
 import { userRepository } from "./user.factory";
-function authFactory() {
-  const authService = new AuthService(userRepository);
-  const authController = new AuthController(authService);
-  return {
-    service: authService,
-    controller: authController,
-  };
-}
 
-const authModule = authFactory();
-export const authService = authModule.service;
-export const authController = authModule.controller;
+class AuthFactory {
+
+  static createAuthService(userRepository:UserRepository): AuthService {
+    return new AuthService(userRepository)
+  }
+
+  static createAuthController(authService: AuthService): AuthController {
+    return new AuthController(authService);
+  }
+}
+export const authService = AuthFactory.createAuthService(userRepository);
+export const authController = AuthFactory.createAuthController(authService);

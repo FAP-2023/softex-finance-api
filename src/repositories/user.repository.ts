@@ -1,7 +1,8 @@
 import { Repository } from "typeorm";
 import { User } from "../entites/user.entity";
+import { IUserRepository } from "./Iuser.repository";
 
-export class UserRepository{
+export class UserRepository implements IUserRepository{
     private repository:Repository<User>
     constructor(repository:Repository<User>){
         this.repository = repository;
