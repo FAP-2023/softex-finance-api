@@ -6,9 +6,10 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { AbstractEntity } from "./AbstractEntity";
 
 @Entity("transactions")
-export class Transaction {
+export class Transaction extends AbstractEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -29,13 +30,4 @@ export class Transaction {
 
   @Column()
   expected_at: Date;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @DeleteDateColumn()
-  deleted_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
 }

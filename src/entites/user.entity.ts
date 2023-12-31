@@ -1,10 +1,12 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { AbstractEntity } from "./AbstractEntity";
 
 
 @Entity("users")
-export class User{
+export class User extends AbstractEntity{
 
     constructor(email:string, password:string, name:string){
+        super()
         this.name = name;
         this.email = email;
         this.password_hash = password;
@@ -28,14 +30,5 @@ export class User{
         nullable:false
     })
     password_hash:string;
-
-    @CreateDateColumn()
-    created_at:Date;
-
-    @DeleteDateColumn()
-    deleted_at:Date;
-
-    @UpdateDateColumn()
-    updated_at:Date;
 }
 

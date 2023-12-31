@@ -1,8 +1,9 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { AbstractEntity } from "./AbstractEntity";
 
 
 @Entity("products")
-export class Product {
+export class Product extends AbstractEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -14,13 +15,4 @@ export class Product {
 
     @Column()
     price: number;
-
-    @CreateDateColumn()
-    created_at: Date;
-
-    @UpdateDateColumn()
-    updated_at: Date;
-
-    @DeleteDateColumn()
-    deleted_at: Date;
 }

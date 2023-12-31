@@ -1,26 +1,17 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
-
+import {
+  Column,
+  Entity,
+} from "typeorm";
+import { AbstractEntity } from "./AbstractEntity";
 
 @Entity("faqitems")
-export class FaqItem {
-    @PrimaryGeneratedColumn()
-    id: number;
+export class FaqItem extends AbstractEntity {
+  @Column()
+  user_id: number;
 
-    @Column()
-    user_id: number;
+  @Column()
+  question: string;
 
-    @Column()
-    question: string;
-
-    @Column()
-    answer: string;
-
-    @CreateDateColumn()
-    created_at: Date;
-
-    @UpdateDateColumn()
-    updated_at: Date;
-
-    @DeleteDateColumn()
-    deleted_at: Date;
+  @Column()
+  answer: string;
 }
