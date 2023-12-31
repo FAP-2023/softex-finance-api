@@ -1,11 +1,11 @@
 import { Router } from "express";
-import UserController from "../controllers/user.controller";
+import { userController } from "../factories/user.factory";
 
 
 export const UserRoutes = (): Router => {
     const router = Router();
 
-    router.post("/", UserController.createrUser);
+    router.post("/", userController.createrUser);
 
     return router;
 };
