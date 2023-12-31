@@ -3,15 +3,17 @@ import {
   Entity,
 } from "typeorm";
 import { AbstractEntity } from "./AbstractEntity";
+import { PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("faqitems")
+// Modelo para a tabela 'faq_items'
+@Entity("faq_items")
 export class FaqItem extends AbstractEntity {
-  @Column()
-  user_id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @Column()
+  @Column({ type: "text" })
   question: string;
 
-  @Column()
+  @Column({ type: "text" })
   answer: string;
 }
