@@ -1,6 +1,5 @@
 import { User } from "../entites/user.entity";
 import bcrypt from 'bcrypt'
-import { AppDataSource } from "./database/app-data-source";
 import { UserRepository } from "../repositories/user.repository";
 
 
