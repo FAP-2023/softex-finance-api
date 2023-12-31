@@ -2,9 +2,9 @@ import { Repository } from "typeorm";
 import { UserRepository } from "../repositories/user.repository";
 import { User } from "../entites/user.entity";
 import { UserService } from "../services/user.service";
-import { UserController } from "../controllers/user.controller";
+import { UserController } from "../controllers/user/user.controller";
 import { AppDataSource } from "../services/database/app-data-source";
-import { IUserController } from "../controllers/Iuser.controller";
+import { IUserController } from "../controllers/user/Iuser.controller";
 import { IUserService } from "../services/Iuser.service";
 import { IUserRepository } from "../repositories/Iuser.repository";
 

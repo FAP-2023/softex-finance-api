@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { UserService } from "../services/user.service";
+import { UserService } from "../../services/user.service";
 import { IUserController } from "./Iuser.controller";
-import { IUserService } from "../services/Iuser.service";
+import { IUserService } from "../../services/Iuser.service";
 
 
 export class UserController implements IUserController {

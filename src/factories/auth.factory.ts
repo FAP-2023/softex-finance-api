@@ -1,4 +1,4 @@
-import { AuthController } from "../controllers/auth.controller";
+import { AuthController } from "../controllers/auth/auth.controller";
 import { AuthService } from "../services/auth.service";
 import { UserRepository } from "../repositories/user.repository";
 import { userRepository } from "./user.factory";
