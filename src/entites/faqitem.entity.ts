@@ -1,26 +1,19 @@
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+} from "typeorm";
+import { AbstractEntity } from "./AbstractEntity";
+import { PrimaryGeneratedColumn } from "typeorm";
 
+// Modelo para a tabela 'faq_items'
+@Entity("faq_items")
+export class FaqItem extends AbstractEntity {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-@Entity("faqitems")
-export class FaqItem {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @Column({ type: "text" })
+  question: string;
 
-    @Column()
-    user_id: number;
-
-    @Column()
-    question: string;
-
-    @Column()
-    answer: string;
-
-    @CreateDateColumn()
-    created_at: Date;
-
-    @UpdateDateColumn()
-    updated_at: Date;
-
-    @DeleteDateColumn()
-    deleted_at: Date;
+  @Column({ type: "text" })
+  answer: string;
 }
