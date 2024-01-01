@@ -1,4 +1,4 @@
-import { IsNumber, IsString } from "class-validator";
+import { IsEmail, IsNumber, IsString } from "class-validator";
 import { User } from "../../../entites/user.entity";
 import { Expose } from "class-transformer";
 import bcrypt from 'bcrypt'
@@ -14,6 +14,7 @@ export class UserCreateOrUpdateDTO{
 
     @IsString()
     @Expose()
+    @IsEmail()
     email:string
 
     @IsString()

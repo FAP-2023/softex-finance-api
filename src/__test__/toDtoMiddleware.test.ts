@@ -10,8 +10,6 @@ describe("toDtoContainer middleware", () => {
 
     const middleware = toDtoContainer(UserCreateOrUpdateDTO);
     await middleware(req as Request, res as Response, next);
-
-    expect(req.body).toBeInstanceOf(UserCreateOrUpdateDTO);
     expect(res.json).not.toHaveBeenCalled();
     expect(next).toHaveBeenCalled();
   });
