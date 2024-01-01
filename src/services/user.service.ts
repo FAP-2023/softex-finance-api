@@ -1,6 +1,5 @@
 import { User } from "../entites/user.entity";
 import bcrypt from "bcrypt";
-import { UserRepository } from "../repositories/user.repository";
 import { IUserRepository } from "../repositories/Iuser.repository";
 import { IUserService } from "./Iuser.service";
 

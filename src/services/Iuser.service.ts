@@ -1,4 +1,3 @@
-import { UserCreateOrUpdateDTO } from "../controllers/user/dto/UserCreateOrUpdateDTO";
 import { User } from "../entites/user.entity";
 
 export interface IUserService {

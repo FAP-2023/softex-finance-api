@@ -1,4 +1,4 @@
-import { FindOptionsWhere, Repository } from "typeorm";
+import { Repository } from "typeorm";
 import { User } from "../entites/user.entity";
 import { IUserRepository } from "./Iuser.repository";
 import { UserCreateOrUpdateDTO } from "../controllers/user/dto/UserCreateOrUpdateDTO";
@@ -17,7 +17,7 @@ export class UserRepository implements IUserRepository {
 		try {
 			const user = new User(email, passwordHash, name);
 			const createdUser = await this.repository.save(user);
-			return user;
+			return createdUser;
 		} catch (error: any) {
 			throw new Error(error.message);
 		}

@@ -1,4 +1,4 @@
-interface IAbstractEntity {
+export interface IAbstractEntity {
   id: number;
 
   created_at: Date;
