@@ -1,19 +1,20 @@
-import { User } from "../entites/user.entity";
-import { AppDataSource } from "./database/app-data-source";
 import bcrypt from "bcrypt";
 import "dotenv/config";
 import jwt from "jsonwebtoken";
-import { UserRepository } from "../repositories/user.repository";
-import { Repository } from "typeorm";
+import { IUserRepository } from "../repositories/Iuser.repository";
+import { IAuthService } from "./Iauth.service";
+import { UserDTO } from "../controllers/user/dto/UserDTO";
+import { instanceToInstance, plainToInstance } from "class-transformer";
+import { UserCreateOrUpdateDTO } from "../controllers/user/dto/UserCreateOrUpdateDTO";
 
-export class AuthService {
+export class AuthService implements IAuthService {
 	private userRepository;
 
-	constructor(userRepository:UserRepository) {
+	constructor(userRepository: IUserRepository) {
 		this.userRepository = userRepository;
 	}
 
-	async handleLogin(email: string, password: string) {
+	async handleLogin(email: string, password: string): Promise<string> {
 		try {
 			const foundUser = await this.userRepository.findOneByEmail(email);
 
@@ -37,12 +38,12 @@ export class AuthService {
 				process.env.JWT_SECRET as string,
 				{ expiresIn: 60 * 60 }
 			);
-            if(!token){
-                throw new Error('Something went wrong with the token')
-            }
-            return token;
-		} catch (error) {
-			return error;
+			if (!token) {
+				throw new Error("Something went wrong with the token");
+			}
+			return token;
+		} catch (error: any) {
+			return error.message;
 		}
 	}
 }

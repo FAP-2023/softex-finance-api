@@ -1,10 +1,7 @@
 import {
   Column,
-  CreateDateColumn,
-  DeleteDateColumn,
   Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
+  PrimaryGeneratedColumn
 } from "typeorm";
 import { AbstractEntity } from "./AbstractEntity";
 import { ManyToOne } from "typeorm";
