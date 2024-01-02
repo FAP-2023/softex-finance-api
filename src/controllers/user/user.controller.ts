@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { IUserController } from "./Iuser.controller";
 import { IUserService } from "../../services/Iuser.service";
+import { RequestLocals } from "../../utils/RequestWithLocals";
 
 
 export class UserController implements IUserController {
@@ -21,15 +22,81 @@ export class UserController implements IUserController {
         }
     }
     async getUserById(req:Request, res:Response){
-        return res.sendStatus(200)
+        try {
+            const id = Number(req.params.id);
+            if(isNaN(id)){
+                throw new Error("Parameter should be a number")
+            }
+            const user = await this.userService.findOneById(id);
+            if(!user){
+                throw new Error("Error fetching user")
+            }
+            return res.status(200).json({
+                data:{
+                    user:user
+                }
+            })
+        } catch (error:any) {
+            return res.status(400).json({
+                message: error.message
+            })
+        }
     }
     async getUserByEmail(req:Request, res:Response){
-        return res.sendStatus(200)
+        try {
+            const email = req.params.email;
+            const user = await this.userService.findOneByEmail(email);
+            if(!user){
+                throw new Error("Error fetching user")
+            }
+            return res.status(200).json({
+                data:{
+                    user:user
+                }
+            })
+        } catch (error:any) {
+            return res.status(400).json({
+                message: error.message
+            })
+        }
     }
-    async updateUser(req:Request, res:Response){
-        return res.sendStatus(200)
+    async updateUser(req:RequestLocals, res:Response){
+        try {
+            const dto = req.body;
+            const user = this.userService.updateUser(dto)
+            if(!user){
+                throw new Error("Error while updating user")
+            }
+            return res.status(200).json({
+                data:{
+                    user:user
+                }
+            })
+        } catch (error:any) {
+            return res.status(400).json({
+                message: error.message
+            })
+        }
     }
     async deleteUser(req:Request, res:Response){
-        return res.sendStatus(200)
+        try {
+            const id = Number(req.params.id);
+            if(isNaN(id)){
+                throw new Error("Id must be a number")
+            }
+            const user = this.userService.deleteOneById(id)
+            if(!user){
+                throw new Error("Error while deleting user")
+            }
+            return res.status(200).json({
+                data:{
+                    user:user
+                }
+            })
+        } catch (error:any) {
+            return res.status(400).json({
+                message: error.message
+            })
+        }
     }
 }
