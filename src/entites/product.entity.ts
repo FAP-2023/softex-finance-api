@@ -15,4 +15,16 @@ export class Product extends AbstractEntity {
   @ManyToOne(() => User)
   @JoinColumn({ name: "user_id" })
   user: User;
+
+  @Column({ type: "varchar", length: 255 })
+  name: string;
+
+  @Column({ type: "varchar", length: 255 })
+  description: string;
+
+  @Column({ type: "varchar", length: 255 })
+  image: string;
+
+  @Column()
+  price: number;
 }
