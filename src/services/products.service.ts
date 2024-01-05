@@ -92,4 +92,18 @@ export class ProductService implements IProductsService {
 			throw new Error(error.message);
 		}
 	}
+
+    async findProductByUserId(userId: number): Promise<Product[]> {
+        try {
+            const foundProducts = await this.productRepository.findProductByUserId(
+                userId
+            );
+            if (!foundProducts) {
+                throw new Error("Error fetching products");
+            }
+            return foundProducts;
+        } catch (error: any) {
+            throw new Error(error.message);
+        }
+    }
 }

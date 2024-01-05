@@ -6,4 +6,5 @@ export interface IProductsService {
     createProduct(product: ProductCreateOrUpdateDTO): Promise<Product>;
     updateProduct(product: ProductCreateOrUpdateDTO): Promise<Product | undefined>;
     deleteProduct(id: number): Promise<void>;
+    findProductByUserId(userId: number): Promise<Product[]>;
 }

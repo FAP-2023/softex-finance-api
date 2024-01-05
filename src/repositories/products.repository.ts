@@ -72,4 +72,16 @@ export class ProductsRepository implements IProductsRepository {
             throw new Error(error.message);
         }
     }
+	findProductByUserId(userId: number): Promise<Product[]> {
+		try {
+			const foundProducts = this.repository.find({
+				where: {
+					user_id: userId,
+				},
+			});
+			return foundProducts;
+		} catch (error:any) {
+			throw new Error(error.message)
+		}
+	}
 }

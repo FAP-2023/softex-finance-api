@@ -6,4 +6,5 @@ export interface IProductsController {
     createProduct(req: Request, res: Response): void;
     updateProduct(req: Request, res: Response): void;
     deleteProduct(req: Request, res: Response): void;
+    findProductByUserId(req: Request, res: Response): void;
 }

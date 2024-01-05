@@ -62,4 +62,17 @@ export class ProductController implements IProductsController{
             return res.status(400).json({ message: "Erro ao atualizar produto" });
         }
     }
+
+    async findProductByUserId(req: Request, res: Response) {
+        const id = Number(req.params.id);
+        if(!id){
+            return res.status(400).json({ message: "Id não informado" });
+        }
+        try {
+            const products = await this.productService.findProductByUserId(id);
+            return res.status(200).json({ ok: true, products });
+        } catch (error:any) {
+            return res.status(400).json({ message: error.message });
+        }
+    }
 }
