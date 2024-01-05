@@ -3,7 +3,6 @@ import { User } from "../../entites/user.entity";
 import { Transaction } from "../../entites/transaction.entity";
 import 'reflect-metadata'
 
-console.log(process.env.DATABASE_PASSWORD, "process.env.DATABASE_PASSWORD");
 export const AppDataSource = new DataSource({
   type: "postgres",
   host: process.env.DATABASE_HOST,

@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 import { IProductsRepository } from "./Iproducts.repository";
 import { Product } from "../entites/product.entity";
 
-export class ProductRepository implements IProductsRepository {
+export class ProductsRepository implements IProductsRepository {
 	private repository: Repository<Product>;
 	constructor(repository: Repository<Product>) {
 		this.repository = repository;
