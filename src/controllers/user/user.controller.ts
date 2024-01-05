@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { IUserController } from "./Iuser.controller";
 import { IUserService } from "../../services/Iuser.service";
-import { RequestLocals } from "../../utils/RequestWithLocals";
 
 
 export class UserController implements IUserController {
@@ -60,7 +59,7 @@ export class UserController implements IUserController {
             })
         }
     }
-    async updateUser(req:RequestLocals, res:Response){
+    async updateUser(req:Request, res:Response){
         try {
             const dto = req.body;
             const user = this.userService.updateUser(dto)
