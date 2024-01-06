@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString, isNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, isNotEmpty } from 'class-validator';
+import { UserDTO } from '../../user/dto/UserDTO';
 
 export class ProductCreateOrUpdateDTO {
     @IsNotEmpty()
@@ -18,7 +19,15 @@ export class ProductCreateOrUpdateDTO {
     id: number;
 
     @IsNotEmpty()
-    @IsNumber()
-    user_id: number;
+    @IsObject()
+    user:UserDTO;
+
+    constructor(name: string, price: number, description: string, id: number, user: UserDTO) {
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.id = id;
+        this.user=user
+    }
 
 }
