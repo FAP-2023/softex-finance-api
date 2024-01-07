@@ -6,6 +6,7 @@ import "reflect-metadata";
 import { UserRoutes } from "./routes/user.route";
 import { authRoutes } from "./routes/auth.route";
 import { ProductsRoutes } from "./routes/products.route";
+import { customersRoutes } from "./routes/customers.route";
 
 async function startApp() {
 	try {
@@ -16,6 +17,7 @@ async function startApp() {
 		app.use("/users", UserRoutes());
 		app.use("/", authRoutes());
 		app.use("/products", ProductsRoutes());
+		app.use("/customers", customersRoutes());
 		//--------------------
 
 		app.use(express.urlencoded({ extended: true }));
