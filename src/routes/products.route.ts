@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { productsController } from "../factories/products.factory";
 import checkAuthMiddleware from "../middlewares/checkAuth.middleware";
+import { toDtoContainer } from "../middlewares/toDTO.middleware";
+import { ProductCreateOrUpdateDTO } from "../controllers/products/dto/ProductCreateOrUpdateDTO";
 
 export function ProductsRoutes() {
 	const router = Router();
@@ -22,6 +24,7 @@ export function ProductsRoutes() {
 	router.put(
 		"/:id",
 		(req, res, next) => checkAuthMiddleware(req, res, next),
+		(req, res, next) => toDtoContainer(ProductCreateOrUpdateDTO)(req, res, next),
 		(req, res) => productsController.updateProduct(req, res)
 	);
 	router.delete(

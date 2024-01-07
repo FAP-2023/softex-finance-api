@@ -7,7 +7,7 @@ import { AbstractEntity } from "./AbstractEntity";
 import { ManyToOne } from "typeorm";
 import { JoinColumn } from "typeorm";
 import { User } from "./user.entity";
-import { Customer } from "./Customers.entity";
+import { Customer } from "./Customer.entity";
 
 // Modelo para a tabela 'transactions'
 @Entity("transactions")

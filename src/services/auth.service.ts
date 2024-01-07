@@ -3,9 +3,6 @@ import "dotenv/config";
 import jwt from "jsonwebtoken";
 import { IUserRepository } from "../repositories/Iuser.repository";
 import { IAuthService } from "./Iauth.service";
-import { UserDTO } from "../controllers/user/dto/UserDTO";
-import { instanceToInstance, plainToInstance } from "class-transformer";
-import { UserCreateOrUpdateDTO } from "../controllers/user/dto/UserCreateOrUpdateDTO";
 
 export class AuthService implements IAuthService {
 	private userRepository;
@@ -31,9 +28,7 @@ export class AuthService implements IAuthService {
 			}
 			const token = jwt.sign(
 				{
-					user: {
-						id: foundUser.id,
-					},
+					userId: foundUser.id,
 				},
 				process.env.JWT_SECRET as string,
 				{ expiresIn: 60 * 60 }
