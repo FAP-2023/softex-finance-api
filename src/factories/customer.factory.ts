@@ -1,5 +1,5 @@
 import { Repository } from "typeorm";
-import { AppDataSource } from "../services/database/app-data-source";
+import { AppDataSource } from "../database/app-data-source";
 import { userRepository } from "./user.factory";
 import { CustomerController } from "../controllers/customer/Customer.controller";
 import { ICustomerService } from "../services/Icustomer.service";

@@ -1,7 +1,7 @@
 import express from "express";
 import { createServer } from "http";
 import "dotenv/config";
-import { startDatabase } from "./services/database/app-data-source";
+import { startDatabase } from "./database/app-data-source";
 import "reflect-metadata";
 import { UserRoutes } from "./routes/user.route";
 import { authRoutes } from "./routes/auth.route";
