@@ -76,16 +76,19 @@ export class CustomerService implements ICustomerService {
 
 	public async getCustomerByUserId(
 		userId: number
-	): Promise<CustomerDTO | null> {
-		const customer = await this.customerRepository.getCustomerByUserId(
+	): Promise<CustomerDTO[] | null> {
+		const customerList = await this.customerRepository.getCustomerByUserId(
 			userId
 		);
-		if (!customer) {
+		if (!customerList) {
 			throw new Error("Customer not found");
 		}
-		const dto = plainToInstance(CustomerDTO, customer, {
-			excludeExtraneousValues: true,
-		});
+		const dto = customerList.map(customer => {
+			const customerDto = plainToInstance(CustomerDTO, customer, {
+				excludeExtraneousValues: true,
+			});
+			return customerDto
+		})
 		return dto;
 	}
 }

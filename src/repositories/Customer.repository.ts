@@ -44,8 +44,8 @@ export class CustomerRepository implements ICustomerRepository {
         return allCustomers;
 	}
 
-    public async getCustomerByUserId(userId: number): Promise<Customer|null> {
-        const foundCustomer = await this.repository.findOne({
+    public async getCustomerByUserId(userId: number): Promise<Customer[]|null> {
+        const foundCustomer = await this.repository.find({
             where: { user: { id: userId } },
             relations: ["user"]
         });

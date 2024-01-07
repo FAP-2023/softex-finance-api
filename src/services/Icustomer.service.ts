@@ -6,5 +6,5 @@ export interface ICustomerService {
 	delete(id: number): Promise<boolean>;
 	getById(id: number): Promise<CustomerDTO | null>;
 	getAll(): Promise<CustomerDTO[]>;
-	getCustomerByUserId(userId: number): Promise<CustomerDTO | null>;
+	getCustomerByUserId(userId: number): Promise<CustomerDTO[] | null>;
 }

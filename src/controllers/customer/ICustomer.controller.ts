@@ -11,7 +11,7 @@ export interface ICustomerController {
 		res: Response,
 		next: NextFunction
 	): Promise<Response | null | undefined>;
-	delete(req: Request, res: Response, next: NextFunction): Promise<boolean>;
+	delete(req: Request, res: Response, next: NextFunction): Promise<Response | null | undefined>;
 	getById(
 		req: Request,
 		res: Response,

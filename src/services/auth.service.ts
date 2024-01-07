@@ -28,9 +28,7 @@ export class AuthService implements IAuthService {
 			}
 			const token = jwt.sign(
 				{
-					user: {
-						id: foundUser.id,
-					},
+					userId: foundUser.id,
 				},
 				process.env.JWT_SECRET as string,
 				{ expiresIn: 60 * 60 }

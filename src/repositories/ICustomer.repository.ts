@@ -6,5 +6,5 @@ export interface ICustomerRepository {
     delete(id: number): Promise<boolean>;
     getById(id: number): Promise<Customer|null>;
     getAll(): Promise<Customer[]>;
-    getCustomerByUserId(userId: number): Promise<Customer|null>;
+    getCustomerByUserId(userId: number): Promise<Customer[]|null>;
 }
