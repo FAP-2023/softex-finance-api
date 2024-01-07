@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsObject, IsOptional, IsString, isNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsObject, IsString } from 'class-validator';
 import { UserDTO } from '../../user/dto/UserDTO';
 
 export class ProductCreateOrUpdateDTO {

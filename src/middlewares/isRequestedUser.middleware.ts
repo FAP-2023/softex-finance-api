@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import { RequestLocals } from '../utils/RequestWithLocals';
 
 const isRequestedUserMiddleware = (req: Request, res: Response, next: NextFunction) => {
     const authenticatedUserId = req.locals.userId;

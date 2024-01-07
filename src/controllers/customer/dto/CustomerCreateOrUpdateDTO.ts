@@ -1,5 +1,4 @@
 import { Expose } from "class-transformer";
-import { UserDTO } from "../../user/dto/UserDTO";
 import { IsNumber, IsObject, IsString } from "class-validator";
 
 export class CustomerCreateOrUpdateDTO {
@@ -9,15 +8,15 @@ export class CustomerCreateOrUpdateDTO {
 
 	@Expose()
 	@IsObject()
-	private user: UserDTO | null;
+	private userId: number | null;
 
 	@Expose()
 	@IsString()
 	private email: string | null;
 
-	constructor(id?: number, user?: UserDTO, email?: string) {
+	constructor(id?: number, userId?: number, email?: string) {
 		this.id = id || null;
-		this.user = user || null;
+		this.userId = userId || null;
 		this.email = email || null;
 	}
 }

@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { userController } from "../factories/user.factory";
 import checkAuthMiddleware from "../middlewares/checkAuth.middleware";
-import { RequestLocals } from "../utils/RequestWithLocals";
 import isRequestedUserMiddleware from "../middlewares/isRequestedUser.middleware";
 import { toDtoContainer } from "../middlewares/toDTO.middleware";
 import { UserCreateOrUpdateDTO } from "../controllers/user/dto/UserCreateOrUpdateDTO";
@@ -26,7 +25,8 @@ export const UserRoutes = (): Router => {
 		"/",
 		(req, res, next) => checkAuthMiddleware(req, res, next),
 		(req, res, next) => isRequestedUserMiddleware(req, res, next),
-		(req, res, next) => toDtoContainer(UserCreateOrUpdateDTO),
+		(req, res, next) =>
+			toDtoContainer(UserCreateOrUpdateDTO)(req, res, next),
 		(req, res) => userController.updateUser(req, res)
 	);
 	router.delete(

@@ -1,11 +1,10 @@
-import { CustomerCreateOrUpdateDTO } from "../controllers/customer/dto/CustomerCreateOrUpdateDTO";
 import { Customer } from "../entites/Customer.entity";
 
 export interface ICustomerRepository {
-    create(customer: CustomerCreateOrUpdateDTO): Promise<Customer>;
+    create(customer: Customer): Promise<Customer>;
     update(customer: Customer): Promise<Customer>;
     delete(id: number): Promise<boolean>;
-    getById(id: number): Promise<Customer>;
+    getById(id: number): Promise<Customer|null>;
     getAll(): Promise<Customer[]>;
-    getCustomerByUserId(userId: number): Promise<Customer>;
+    getCustomerByUserId(userId: number): Promise<Customer|null>;
 }

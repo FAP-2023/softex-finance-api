@@ -3,9 +3,6 @@ import "dotenv/config";
 import jwt from "jsonwebtoken";
 import { IUserRepository } from "../repositories/Iuser.repository";
 import { IAuthService } from "./Iauth.service";
-import { UserDTO } from "../controllers/user/dto/UserDTO";
-import { instanceToInstance, plainToInstance } from "class-transformer";
-import { UserCreateOrUpdateDTO } from "../controllers/user/dto/UserCreateOrUpdateDTO";
 
 export class AuthService implements IAuthService {
 	private userRepository;

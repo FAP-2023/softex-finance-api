@@ -5,15 +5,15 @@ import { IsNumber, IsObject, IsString } from "class-validator";
 export class CustomerDTO{
     @Expose()
     @IsNumber()
-    private id: number | null;
+    id: number | null;
 
     @Expose()
     @IsObject()
-    private user: UserDTO | null;
+    user: UserDTO | null;
     
     @Expose()
     @IsString()
-    private email: string | null;
+    email: string | null;
 
     public fromEntityToDTO(id: number, user: UserDTO, email: string): CustomerDTO {
         this.id = id;
