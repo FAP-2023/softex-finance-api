@@ -8,7 +8,12 @@ import { UserCreateOrUpdateDTO } from "../controllers/user/dto/UserCreateOrUpdat
 export const UserRoutes = (): Router => {
 	const router = Router();
 
-	router.post("/", (req, res) => userController.createrUser(req, res));
+	router.post(
+		"/",
+		(req, res, next) =>
+			toDtoContainer(UserCreateOrUpdateDTO)(req, res, next),
+		(req, res) => userController.createrUser(req, res)
+	);
 	router.get(
 		"/:id",
 		(req, res, next) => checkAuthMiddleware(req, res, next),
