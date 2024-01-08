@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { userController } from "../factories/user.factory";
 import checkAuthMiddleware from "../middlewares/checkAuth.middleware";
-import { RequestLocals } from "../utils/RequestWithLocals";
 import isRequestedUserMiddleware from "../middlewares/isRequestedUser.middleware";
 import { toDtoContainer } from "../middlewares/toDTO.middleware";
 import { UserCreateOrUpdateDTO } from "../controllers/user/dto/UserCreateOrUpdateDTO";
@@ -9,7 +8,12 @@ import { UserCreateOrUpdateDTO } from "../controllers/user/dto/UserCreateOrUpdat
 export const UserRoutes = (): Router => {
 	const router = Router();
 
-	router.post("/", (req, res) => userController.createrUser(req, res));
+	router.post(
+		"/",
+		(req, res, next) =>
+			toDtoContainer(UserCreateOrUpdateDTO)(req, res, next),
+		(req, res) => userController.createrUser(req, res)
+	);
 	router.get(
 		"/:id",
 		(req, res, next) => checkAuthMiddleware(req, res, next),
@@ -26,7 +30,8 @@ export const UserRoutes = (): Router => {
 		"/",
 		(req, res, next) => checkAuthMiddleware(req, res, next),
 		(req, res, next) => isRequestedUserMiddleware(req, res, next),
-		(req, res, next) => toDtoContainer(UserCreateOrUpdateDTO),
+		(req, res, next) =>
+			toDtoContainer(UserCreateOrUpdateDTO)(req, res, next),
 		(req, res) => userController.updateUser(req, res)
 	);
 	router.delete(

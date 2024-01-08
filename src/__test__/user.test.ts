@@ -17,12 +17,15 @@ describe("User tests, including tests for services and controllers", () => {
                 return null;
             }
             async deleteOneById(id: number): Promise<boolean | null> {
+                console.log(id)
                 return true
             }
             async findOneById(id: number): Promise<User | null> {
+                console.log(id)
                 return null
             }
             async updateUser(dto: UserCreateOrUpdateDTO): Promise<User | null> {
+                console.log(dto)
                 return null
             }
         }

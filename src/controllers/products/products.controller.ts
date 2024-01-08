@@ -53,7 +53,6 @@ export class ProductController implements IProductsController{
     }
 
     async updateProduct(req: Request, res: Response) {
-        const id = Number(req.params.id);
         const productDTO = req.body;
         try {
             await this.productService.updateProduct(productDTO);

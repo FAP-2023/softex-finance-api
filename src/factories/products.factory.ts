@@ -7,7 +7,7 @@ import { IProductsController } from "../controllers/products/Iproducts.controlle
 import { ProductService } from "../services/products.service";
 import { IUserRepository } from "../repositories/Iuser.repository";
 import { ProductController } from "../controllers/products/products.controller";
-import { AppDataSource } from "../services/database/app-data-source";
+import { AppDataSource } from "../database/app-data-source";
 import { userRepository } from "./user.factory";
 
 class ProductsFactory{
