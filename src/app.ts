@@ -14,8 +14,9 @@ async function startApp() {
 		app.use(express.json());
 
 		//configurando rotas
+		app.use('/*', (req, res, next) => res.sendStatus(404))
 		app.use("/users", UserRoutes());
-		app.use("/", authRoutes());
+		app.use("/auth/", authRoutes());
 		app.use("/products", ProductsRoutes());
 		app.use("/customers", customersRoutes());
 		//--------------------
