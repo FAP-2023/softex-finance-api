@@ -10,6 +10,7 @@ export function TransactionsRoutes() {
     router.post(
         "/",
         (req, res, next) => checkAuthMiddleware(req, res, next),
+		(req, res, next) => toDtoContainer(TransactionCreateOrUpdateDTO)(req, res, next),
         (req, res) => transactionsController.createTransaction(req, res)
     );
     router.get(

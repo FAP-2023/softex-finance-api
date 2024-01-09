@@ -3,10 +3,10 @@ import { TransactionCreateOrUpdateDTO } from "../controllers/transactions/dto/Tr
 
 
 export interface ITransactionsService {
-    getAllTransactions(): Promise<Transaction[]>;
-    getTransactionById(id: number): Promise<Transaction | undefined>;
-    createTransaction(transaction: TransactionCreateOrUpdateDTO): Promise<Transaction>;
+    getAllTransactions(): Promise<TransactionCreateOrUpdateDTO[]>;
+    getTransactionById(id: number): Promise<TransactionCreateOrUpdateDTO | undefined>;
+    createTransaction(transaction: TransactionCreateOrUpdateDTO): Promise<TransactionCreateOrUpdateDTO>;
     updateTransaction(transaction: TransactionCreateOrUpdateDTO): Promise<Transaction | undefined>;
-    deleteTransaction(id: number): Promise<void>;
-    findTransactionByUserId(userId: number): Promise<Transaction[]>;
+    deleteTransaction(id: number): Promise<boolean>;
+    findTransactionByUserId(userId: number): Promise<TransactionCreateOrUpdateDTO[]>;
 }

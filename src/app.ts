@@ -7,6 +7,7 @@ import { UserRoutes } from "./routes/user.route";
 import { authRoutes } from "./routes/auth.route";
 import { ProductsRoutes } from "./routes/products.route";
 import { customersRoutes } from "./routes/customers.route";
+import { TransactionsRoutes } from "./routes/transactions.route";
 
 async function startApp() {
 	try {
@@ -19,6 +20,7 @@ async function startApp() {
 		app.use("/auth/", authRoutes());
 		app.use("/products", ProductsRoutes());
 		app.use("/customers", customersRoutes());
+		app.use("/transactions", TransactionsRoutes())
 		//--------------------
 
 		app.use(express.urlencoded({ extended: true }));

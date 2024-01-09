@@ -35,7 +35,7 @@ export class TransactionsRepository implements ITransactionsRepository {
 
     async delete(id: number): Promise<boolean> {
         try {
-            const deletedTransaction = await this.repository.delete(id);
+            const deletedTransaction = await this.repository.softDelete(id);
             if (deletedTransaction.affected === 0) {
                 throw new Error("Transaction not found");
             }
