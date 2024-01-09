@@ -17,7 +17,7 @@ export function ProductsRoutes() {
 		(req, res) => productsController.getAllProducts(req, res)
 	);
 	router.get(
-		"/:id",
+		"/getOne/:id",
 		(req, res, next) => checkAuthMiddleware(req, res, next),
 		(req, res) => productsController.getProductById(req, res)
 	);
