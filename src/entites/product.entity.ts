@@ -25,6 +25,7 @@ export class Product extends AbstractEntity {
   @Column({ type: "varchar", length: 255, nullable: true })
   image: string;
 
-  @Column()
+  @Column({ type: "float" })
   price: number;
 }
+
