@@ -14,9 +14,8 @@ export class ProductCreateOrUpdateDTO {
     @IsString()
     description: string;
 
-    @IsNotEmpty()
     @IsNumber()
-    id: number;
+    id?: number;
 
     @IsNotEmpty()
     @IsObject()

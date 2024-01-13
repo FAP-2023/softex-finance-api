@@ -9,6 +9,7 @@ export function ProductsRoutes() {
 	router.post(
 		"/",
 		(req, res, next) => checkAuthMiddleware(req, res, next),
+		(req, res, next) => toDtoContainer(ProductCreateOrUpdateDTO)(req, res, next),
 		(req, res) => productsController.createProduct(req, res)
 	);
 	router.get(
