@@ -65,7 +65,7 @@ export class UserService implements IUserService {
 		try {
 			const foundUser = await this.userRepository.findOneById(id);
 			if (foundUser) {
-				const dto = plainToInstance(UserDTO, foundUser);
+				const dto = new UserDTO(foundUser.id, foundUser.name, foundUser.email)
 				return dto;
 			}
 			return null;
