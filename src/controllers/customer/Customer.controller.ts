@@ -18,7 +18,7 @@ export class CustomerController implements ICustomerController{
             }
             return CreateResponse.sendResponse(res, 200, "Customer created", {});
         } catch (error:HttpException | any) {
-            next(error);
+            next(error.message);
         }
     }
 
