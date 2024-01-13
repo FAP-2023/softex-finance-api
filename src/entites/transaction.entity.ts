@@ -6,6 +6,11 @@ import { User } from "./user.entity";
 import { Customer } from "./Customer.entity";
 import { Product } from "./product.entity";
 
+enum TransactionType {
+	IN = 'in',
+	OUT = 'out'
+}
+
 // Modelo para a tabela 'transactions'
 @Entity("transactions")
 export class Transaction extends AbstractEntity {
@@ -21,8 +26,8 @@ export class Transaction extends AbstractEntity {
 	@Column({ type: "float" })
 	amount: number;
 
-	@Column({ type: "varchar" })
-	type: string;
+	@Column({ type: "enum", enum: TransactionType, default: TransactionType.IN, nullable: false })
+	type: TransactionType;
 
 	@Column({ type: "timestamp", nullable: true })
 	executed_at: Date;
