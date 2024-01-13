@@ -7,8 +7,8 @@ import { Customer } from "./Customer.entity";
 import { Product } from "./product.entity";
 
 enum TransactionType {
-	IN = 'in',
-	OUT = 'out'
+	IN = 'IN',
+	OUT = 'OUT'
 }
 
 // Modelo para a tabela 'transactions'
