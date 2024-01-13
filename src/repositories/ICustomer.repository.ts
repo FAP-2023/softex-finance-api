@@ -8,4 +8,5 @@ export interface ICustomerRepository {
     getAll(): Promise<Customer[]>;
     getCustomerByUserId(userId: number): Promise<Customer[]|null>;
     getOneByEmail(email: string): Promise<Customer|null>;
+    countAllCustomerByUserId(userId: number): Promise<number>;
 }

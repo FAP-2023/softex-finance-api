@@ -47,5 +47,6 @@ export function customersRoutes() {
 		(req, res, next) =>
 			customerController.getCustomerByUserId(req, res, next)
 	);
+	router.get('/countAll', (req, res, next) => checkAuthMiddleware(req, res, next), (req, res, next) => customerController.countAllCustomerByUserId(req, res, next))
 	return router;
 }

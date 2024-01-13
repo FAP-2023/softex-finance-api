@@ -9,4 +9,5 @@ export interface ITransactionsService {
     updateTransaction(transaction: TransactionCreateOrUpdateDTO): Promise<Transaction | undefined>;
     deleteTransaction(id: number): Promise<boolean>;
     findTransactionByUserId(userId: number): Promise<TransactionCreateOrUpdateDTO[]>;
+    countAllTransactionsByUserId(userId: number): Promise<number>;
 }

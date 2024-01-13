@@ -8,4 +8,5 @@ export interface ITransactionsRepository {
     update(transaction: Transaction): Promise<Transaction>;
     delete(id: number): Promise<boolean>;
     findTransactionByUserId(userId: number): Promise<Transaction[]>;
+    countAllTransactionsByUserId(userId: number): Promise<number>;
 }

@@ -94,4 +94,20 @@ export class CustomerController implements ICustomerController{
             next(error);
         }
     }
+
+    public async countAllCustomerByUserId(req: Request, res: Response, next: NextFunction): Promise<Response | null | undefined> {
+        try {
+            const userId = Number(req?.locals?.userId);
+            if(isNaN(userId)){
+                return CreateResponse.sendErrorResponse(res, 400, "User id is not a number");
+            }
+            const result = await this.customerService.countAllCustomerByUserId(userId);
+            if(!result){
+                return CreateResponse.sendErrorResponse(res, 400, "Customer not found");
+            }
+            return CreateResponse.sendResponse(res, 200, "Customer found", result);
+        } catch (error:HttpException | any) {
+            next(error);
+        }
+    }
 }

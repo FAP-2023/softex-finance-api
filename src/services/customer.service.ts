@@ -96,4 +96,15 @@ export class CustomerService implements ICustomerService {
 		})
 		return dto;
 	}
+
+	public async countAllCustomerByUserId(userId: number): Promise<number> {
+		try {
+			const count = await this.customerRepository.countAllCustomerByUserId(
+				userId
+			);
+			return count;
+		} catch (error:any) {
+			throw new Error(error.message);
+		}
+	}
 }

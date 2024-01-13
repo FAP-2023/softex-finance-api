@@ -8,4 +8,5 @@ export interface ICustomerService {
 	getById(id: number): Promise<CustomerDTO | null>;
 	getAll(): Promise<CustomerDTO[]>;
 	getCustomerByUserId(userId: number): Promise<CustomerDTO[] | null>;
+	countAllCustomerByUserId(userId: number): Promise<number>;
 }
