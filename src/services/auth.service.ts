@@ -46,7 +46,7 @@ export class AuthService implements IAuthService {
 	async handleRequestPasswordReset(email: string): Promise<boolean> {
 		try {
 			const foundUser = await this.userRepository.findOneByEmail(email);
-			if (!foundUser) {
+			if (foundUser === null) {
 				throw new Error("User not found");
 			}
 
@@ -62,7 +62,7 @@ export class AuthService implements IAuthService {
 			}
 			// Send email with token
 			const info = await transporter.sendMail({
-				from: `${process.env.SMTP_USER}`, // sender address
+				from: `${process.env.SMTP_USERNAME}`, // sender address
 				to: email, // list of receivers
 				subject: "password redefine link", // Subject line
 				text: "This is the link to redefine your password", // plain text body
@@ -73,7 +73,8 @@ export class AuthService implements IAuthService {
 			}
 			return true;
 		} catch (error: any) {
-			return error.message;
+			console.log(error.message)
+			throw new Error(error.message)
 		}
 	}
 }
