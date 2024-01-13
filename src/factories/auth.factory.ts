@@ -14,8 +14,6 @@ class AuthFactory {
     return new AuthController(authService);
   }
 }
+
 export const authService = AuthFactory.createAuthService(userRepository);
-if(authService){
-  console.log("authService created")
-}
 export const authController = AuthFactory.createAuthController(authService);

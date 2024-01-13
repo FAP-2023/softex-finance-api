@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { IAuthService } from "../../services/Iauth.service";
-export class AuthController {
+import { IAuthController } from "./Iauth.controller";
+export class AuthController implements IAuthController {
 	private authService: IAuthService;
 	constructor(authService: IAuthService) {
 		this.authService = authService;
@@ -29,7 +30,7 @@ export class AuthController {
 		}
 	}
 
-	async handleRequestPasswordReset(req: Request, res: Response) {
+	async handleResetPassword(req: Request, res: Response) {
 		try {
 			const data = req.body;
 			if (!data.email) {
