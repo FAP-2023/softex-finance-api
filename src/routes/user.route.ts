@@ -4,6 +4,7 @@ import checkAuthMiddleware from "../middlewares/checkAuth.middleware";
 import isRequestedUserMiddleware from "../middlewares/isRequestedUser.middleware";
 import { toDtoContainer } from "../middlewares/toDTO.middleware";
 import { UserCreateOrUpdateDTO } from "../controllers/user/dto/UserCreateOrUpdateDTO";
+import checkMagicLinkToken from "../middlewares/checkMagicLinkToken";
 
 export const UserRoutes = (): Router => {
 	const router = Router();
@@ -39,6 +40,9 @@ export const UserRoutes = (): Router => {
 		(req, res, next) => checkAuthMiddleware(req, res, next),
 		(req, res, next) => isRequestedUserMiddleware(req, res, next),
 		(req, res) => userController.deleteUser(req, res)
+	);
+	router.put("/password/reset/:token", checkMagicLinkToken, (req, res) =>
+		userController.updatePassword(req, res)
 	);
 	return router;
 };

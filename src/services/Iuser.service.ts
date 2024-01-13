@@ -13,4 +13,5 @@ export interface IUserService {
   findOneById(id:number):Promise<UserDTO|null>
   deleteOneById(id:number):Promise<boolean>
   updateUser(dto:UserCreateOrUpdateDTO):Promise<UserDTO|null>
+  updatePassword(email:string, password:string):Promise<UserDTO|null>
 }

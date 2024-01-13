@@ -98,4 +98,23 @@ export class UserController implements IUserController {
             })
         }
     }
+
+    async updatePassword(req:Request, res:Response){
+        try {
+            const email = req?.body?.email;
+            if(!email){
+                throw new Error("Email is required")
+            }
+            const password = req.body.password;
+            const user = await this.userService.updatePassword(email, password)
+            if(!user){
+                throw new Error("Error while updating password")
+            }
+            return res.sendStatus(200);
+        } catch (error:any) {
+            return res.status(400).json({
+                message: error.message
+            })
+        }
+    }
 }

@@ -7,4 +7,5 @@ export interface IUserRepository{
     deleteOneById(id:number):Promise<boolean|null>
     findOneById(id:number):Promise<User|null>
     updateUser(dto:UserCreateOrUpdateDTO):Promise<User|null>
+    updatePassword(userObject:User):Promise<User|null>
 }

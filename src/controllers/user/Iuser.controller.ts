@@ -5,4 +5,5 @@ export interface IUserController{
     getUserByEmail(req:Request, res:Response):Promise<Response>
     updateUser(req:Request, res:Response):Promise<Response>
     deleteUser(req:Request, res:Response):Promise<Response>
+    updatePassword(req:Request, res:Response):Promise<Response>
 }

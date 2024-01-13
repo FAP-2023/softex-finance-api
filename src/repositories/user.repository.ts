@@ -78,4 +78,13 @@ export class UserRepository implements IUserRepository {
             throw new Error(error.message)
         }
     }
+
+	async updatePassword(userObject: User): Promise<User | null> {
+		try {
+			const user = await this.repository.save(userObject);
+			return user;
+		} catch (error: any) {
+			throw new Error(error.message);
+		}
+	}
 }

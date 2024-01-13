@@ -86,4 +86,23 @@ export class UserService implements IUserService {
         throw new Error(error.message)
       }
   }
+
+  async updatePassword(email: string, password: string): Promise<UserDTO | null> {
+      try {
+        const hash = await bcrypt.hash(password, 10);
+        const foundUser = await this.userRepository.findOneByEmail(email);
+        if(!foundUser){
+          throw new Error("User not found")
+        }
+        foundUser.password_hash = hash;
+        const updatedUser = await this.userRepository.updatePassword(foundUser);
+        if(!updatedUser){
+          throw new Error("Something went wrong while trying to update user") 
+        }
+        const userDto = plainToInstance(UserDTO, updatedUser);
+        return userDto
+      } catch (error:any) {
+        throw new Error(error.message)
+      }
+  }
 }
