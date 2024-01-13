@@ -77,4 +77,17 @@ export class TransactionController implements ITransactionsController {
             return res.status(400).json({ message: error.message });
         }
     }
+
+    async countAllTransactionsByUserId(req: Request, res: Response){
+        const id = Number(req?.locals?.userId);
+        if(!id){
+            return res.status(400).json({ message: "Id não informado" });
+        }
+        try {
+            const count = await this.transactionService.countAllTransactionsByUserId(id);
+            return res.status(200).json({ ok: true, count });
+        } catch (error:any) {
+            return res.status(400).json({ message: error.message });
+        }
+    }
 }

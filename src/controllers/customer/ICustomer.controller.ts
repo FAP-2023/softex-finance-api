@@ -27,4 +27,9 @@ export interface ICustomerController {
 		res: Response,
 		next: NextFunction
 	): Promise<Response | null | undefined>;
+	countAllCustomerByUserId(
+		req: Request,
+		res: Response,
+		next: NextFunction
+	): Promise<Response | null | undefined>;
 }

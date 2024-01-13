@@ -6,6 +6,7 @@ export interface ICustomerService {
 	update(customer: CustomerCreateOrUpdateDTO): Promise<CustomerDTO>;
 	delete(id: number): Promise<boolean>;
 	getById(id: number): Promise<CustomerDTO | null>;
-	getAll(): Promise<CustomerDTO[]>;
+	getAll(userId:number): Promise<CustomerDTO[]>;
 	getCustomerByUserId(userId: number): Promise<CustomerDTO[] | null>;
+	countAllCustomerByUserId(userId: number): Promise<number>;
 }

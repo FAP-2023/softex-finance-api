@@ -34,5 +34,6 @@ export function TransactionsRoutes() {
 		(req, res, next) => checkAuthMiddleware(req, res, next),
 		(req, res) => transactionsController.deleteTransaction(req, res)
 	);
+	router.get("/countAll", (req, res, next) => checkAuthMiddleware(req, res, next), (req, res) => transactionsController.countAllTransactionsByUserId(req, res))
 	return router;
 }

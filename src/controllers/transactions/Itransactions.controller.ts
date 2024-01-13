@@ -8,4 +8,5 @@ export interface ITransactionsController {
     updateTransaction(req: Request, res: Response): void;
     deleteTransaction(req: Request, res: Response): void;
     findTransactionByUserId(req: Request, res: Response): void;
+    countAllTransactionsByUserId(req: Request, res: Response): void;
 }

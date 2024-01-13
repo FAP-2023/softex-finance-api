@@ -149,4 +149,15 @@ export class TransactionService implements ITransactionsService {
 			throw new Error(error.message);
 		}
 	}
+
+	async countAllTransactionsByUserId(userId: number): Promise<number> {
+		try {
+			const count = await this.transactionRepository.countAllTransactionsByUserId(
+				userId
+			);
+			return count;
+		} catch (error: any) {
+			throw new Error(error.message);
+		}
+	}
 }

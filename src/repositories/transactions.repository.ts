@@ -85,4 +85,17 @@ export class TransactionsRepository implements ITransactionsRepository {
 			throw new Error(error.message);
 		}
 	}
+
+    countAllTransactionsByUserId(userId: number): Promise<number> {
+        try {
+            const count = this.repository.count({
+                where: {
+                    user_id: userId,
+                },
+            });
+            return count;
+        } catch (error:any) {
+            throw new Error(error.message);
+        }
+    }
 }

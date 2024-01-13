@@ -34,8 +34,8 @@ export class CustomerService implements ICustomerService {
 		return customer;
 	}
 
-	public async getAll(): Promise<CustomerDTO[]> {
-		const customers = await this.customerRepository.getAll();
+	public async getAll(userId:number): Promise<CustomerDTO[]> {
+		const customers = await this.customerRepository.getAll(userId);
 		const customersDTO = customers.map((customer) => {
 			const customerDTO = plainToInstance(CustomerDTO, customer, {
 				excludeExtraneousValues: true,
@@ -95,5 +95,16 @@ export class CustomerService implements ICustomerService {
 			return customerDto
 		})
 		return dto;
+	}
+
+	public async countAllCustomerByUserId(userId: number): Promise<number> {
+		try {
+			const count = await this.customerRepository.countAllCustomerByUserId(
+				userId
+			);
+			return count;
+		} catch (error:any) {
+			throw new Error(error.message);
+		}
 	}
 }

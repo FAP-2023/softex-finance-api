@@ -5,7 +5,8 @@ export interface ICustomerRepository {
     update(customer: Customer): Promise<Customer>;
     delete(id: number): Promise<boolean>;
     getById(id: number): Promise<Customer|null>;
-    getAll(): Promise<Customer[]>;
+    getAll(userId:number): Promise<Customer[]>;
     getCustomerByUserId(userId: number): Promise<Customer[]|null>;
     getOneByEmail(email: string): Promise<Customer|null>;
+    countAllCustomerByUserId(userId: number): Promise<number>;
 }
