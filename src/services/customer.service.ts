@@ -22,6 +22,10 @@ export class CustomerService implements ICustomerService {
 		if (!user) {
 			throw new Error("User not found");
 		}
+		const foundCustomer = await this.customerRepository.getOneByEmail(customerDTO.email);
+		if(foundCustomer){
+			throw new Error("Customer already exists");
+		}
 		const customerObject = new Customer();
 		Object.assign(customerObject, customerDTO);
 		customerObject.user = user;

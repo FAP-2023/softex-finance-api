@@ -7,4 +7,5 @@ export interface ICustomerRepository {
     getById(id: number): Promise<Customer|null>;
     getAll(): Promise<Customer[]>;
     getCustomerByUserId(userId: number): Promise<Customer[]|null>;
+    getOneByEmail(email: string): Promise<Customer|null>;
 }

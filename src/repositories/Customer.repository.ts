@@ -51,4 +51,12 @@ export class CustomerRepository implements ICustomerRepository {
         });
         return foundCustomer;
     }
+
+	public async getOneByEmail(email: string): Promise<Customer|null> {
+		const foundCustomer = await this.repository.findOne({
+			where: { email },
+			relations: ["user"]
+		});
+		return foundCustomer;
+	}
 }
