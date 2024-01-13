@@ -69,7 +69,11 @@ export class CustomerController implements ICustomerController{
 
     public async getAll(req: Request, res: Response, next: NextFunction): Promise<Response | null | undefined> {
         try {
-            const result = await this.customerService.getAll();
+            const userId = Number(req?.locals?.userId);
+            if(isNaN(userId) || !userId){
+                return CreateResponse.sendErrorResponse(res, 400, "User id is not a number");
+            }
+            const result = await this.customerService.getAll(userId);
             if(!result){
                 return CreateResponse.sendErrorResponse(res, 400, "Customers not found");
             }

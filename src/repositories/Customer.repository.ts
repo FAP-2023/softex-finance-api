@@ -34,8 +34,10 @@ export class CustomerRepository implements ICustomerRepository {
 		});
 		return foundUser;
 	}
-	public getAll(): Promise<Customer[]> {
-		const allCustomers = this.repository.find();
+	public getAll(userId: number): Promise<Customer[]> {
+		const allCustomers = this.repository.find({
+			where: { user: { id: userId } },
+		});
 		if (!allCustomers) {
 			throw new Error("No customers found");
 		}

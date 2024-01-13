@@ -34,8 +34,8 @@ export class CustomerService implements ICustomerService {
 		return customer;
 	}
 
-	public async getAll(): Promise<CustomerDTO[]> {
-		const customers = await this.customerRepository.getAll();
+	public async getAll(userId:number): Promise<CustomerDTO[]> {
+		const customers = await this.customerRepository.getAll(userId);
 		const customersDTO = customers.map((customer) => {
 			const customerDTO = plainToInstance(CustomerDTO, customer, {
 				excludeExtraneousValues: true,
