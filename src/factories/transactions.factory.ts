@@ -8,7 +8,7 @@ import { TransactionService } from "../services/transactions.service";
 import { ITransactionsController } from "../controllers/transactions/Itransactions.controller";
 import { TransactionController } from "../controllers/transactions/transactions.controller";
 import { userRepository } from "./user.factory";
-import { AppDataSource } from "../services/database/app-data-source";
+import { AppDataSource } from "../database/app-data-source";
 
 
 class TransactionsFactory {

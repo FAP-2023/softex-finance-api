@@ -7,8 +7,8 @@ import { IProductsController } from "../controllers/products/Iproducts.controlle
 import { ProductService } from "../services/products.service";
 import { IUserRepository } from "../repositories/Iuser.repository";
 import { ProductController } from "../controllers/products/products.controller";
-import { AppDataSource } from "../database/app-data-source";
 import { userRepository } from "./user.factory";
+import { AppDataSource } from "../database/app-data-source";
 
 class ProductsFactory{
     public static createProductsRepository(repository:Repository<Product>):IProductsRepository{
