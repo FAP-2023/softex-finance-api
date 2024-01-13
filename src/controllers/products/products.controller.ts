@@ -15,8 +15,9 @@ export class ProductController implements IProductsController{
                 return res.sendStatus(400);
             }
             return res.status(201).json({ ok: true, message: "Produto criado com sucesso" });
-        } catch (error) {
-            return res.status(400).json({ message: "Erro ao criar produto" });
+        } catch (error:any) {
+            console.log(error)
+            return res.status(400).json({ message: error.message });
         }
     }
 

@@ -15,10 +15,15 @@ export class CustomerDTO{
     @IsString()
     email: string | null;
 
-    public fromEntityToDTO(id: number, user: UserDTO, email: string): CustomerDTO {
+    @Expose()
+    @IsString()
+    name: string | null;
+
+    public fromEntityToDTO(id: number, user: UserDTO, email: string, name:string): CustomerDTO {
         this.id = id;
         this.user = user;
         this.email = email;
+        this.name = name;
         return this;
     } 
 }

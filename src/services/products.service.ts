@@ -16,7 +16,7 @@ export class ProductService implements IProductsService {
 	}
 	async createProduct(product: ProductCreateOrUpdateDTO): Promise<Product> {
 		try {
-			const foundUser = await this.userRepository.findOneById(product.user_id);
+			const foundUser = await this.userRepository.findOneById(product?.user?.id);
             if(!foundUser){
                 throw new Error("User not found");
             }
@@ -24,6 +24,7 @@ export class ProductService implements IProductsService {
 			prod.name = product.name;
 			prod.description = product.description;
 			prod.price = product.price;
+			prod.user = foundUser;
 
 			const createdProduct = await this.productRepository.create(prod);
 			if (!createdProduct) {
@@ -75,7 +76,7 @@ export class ProductService implements IProductsService {
 	): Promise<Product | undefined> {
 		try {
 			const foundProduct = await this.productRepository.findById(
-				product.id
+				product.id as number
 			);
 			if (!foundProduct) {
 				throw new Error("Product not found");

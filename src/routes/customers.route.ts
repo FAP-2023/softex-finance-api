@@ -1,6 +1,5 @@
 import { Router } from "express";
 import checkAuthMiddleware from "../middlewares/checkAuth.middleware";
-import { CustomerController } from "../controllers/customer/Customer.controller";
 import { customerController } from "../factories/customer.factory";
 import { toDtoContainer } from "../middlewares/toDTO.middleware";
 import { CustomerCreateOrUpdateDTO } from "../controllers/customer/dto/CustomerCreateOrUpdateDTO";

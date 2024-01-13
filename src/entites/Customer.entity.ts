@@ -12,6 +12,9 @@ export class Customer extends AbstractEntity {
   @Column({ type: "varchar" })
   email: string;
 
+  @Column({type: "varchar", nullable: false, default: ""})
+  name: string;
+
   @ManyToOne(() => User)
   @JoinColumn({ name: "user_id" })
   user: User;

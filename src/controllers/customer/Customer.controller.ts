@@ -16,7 +16,7 @@ export class CustomerController implements ICustomerController{
             if(!result){
                 return CreateResponse.sendErrorResponse(res, 400, "Customer not created");
             }
-            return CreateResponse.sendResponse(res, 200, "Customer created", result);
+            return CreateResponse.sendResponse(res, 200, "Customer created", {});
         } catch (error:HttpException | any) {
             next(error);
         }

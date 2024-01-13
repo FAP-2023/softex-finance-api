@@ -22,7 +22,7 @@ export class Product extends AbstractEntity {
   @Column({ type: "varchar", length: 255 })
   description: string;
 
-  @Column({ type: "varchar", length: 255 })
+  @Column({ type: "varchar", length: 255, nullable: true })
   image: string;
 
   @Column()
