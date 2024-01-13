@@ -80,7 +80,7 @@ export class UserService implements IUserService {
         if(!updatedUser){
           throw new Error("Something went wrong while trying to update user") 
         }
-        const userDto = plainToInstance(UserDTO, updatedUser);
+        const userDto = new UserDTO(updatedUser.id, updatedUser.name, updatedUser.email);
         return userDto
       } catch (error:any) {
         throw new Error(error.message)

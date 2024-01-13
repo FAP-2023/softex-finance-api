@@ -72,8 +72,8 @@ export class UserRepository implements IUserRepository {
                 throw new Error("User not found")
             }
             Object.assign(user, dto);
-            this.repository.save(user);
-            return user;
+            const updatedUser = await this.repository.save(user);
+            return updatedUser;
         } catch (error:any) {
             throw new Error(error.message)
         }
