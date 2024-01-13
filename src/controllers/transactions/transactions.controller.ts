@@ -17,7 +17,8 @@ export class TransactionController implements ITransactionsController {
                 return res.sendStatus(400);
             }
             return res.status(201).json({ ok: true, message: "Transação criada com sucesso" });
-        } catch (error) {
+        } catch (error:any) {
+            console.log(error.message)
             return res.status(400).json({ message: "Erro ao criar transação" });
         }
     }

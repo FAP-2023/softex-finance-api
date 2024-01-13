@@ -8,6 +8,7 @@ import { ManyToOne } from "typeorm";
 import { JoinColumn } from "typeorm";
 import { User } from "./user.entity";
 import { Customer } from "./Customer.entity";
+import { Product } from "./product.entity";
 
 // Modelo para a tabela 'transactions'
 @Entity("transactions")
@@ -27,7 +28,7 @@ export class Transaction extends AbstractEntity {
   @Column({ type: "varchar" })
   type: string;
 
-  @Column({ type: "timestamp" })
+  @Column({ type: "timestamp", nullable: true })
   executed_at: Date;
 
   @Column({ type: "timestamp", nullable: true })
@@ -40,4 +41,8 @@ export class Transaction extends AbstractEntity {
   @ManyToOne(() => Customer)
   @JoinColumn({ name: "customer_id" })
   customer: Customer;
+
+  @ManyToOne(() => Product)
+  @JoinColumn({ name: "product_id" })
+  product: Product;
 }
