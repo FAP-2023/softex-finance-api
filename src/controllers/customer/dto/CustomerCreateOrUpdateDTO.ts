@@ -1,22 +1,22 @@
 import { Expose } from "class-transformer";
-import { IsNumber, IsObject, IsString } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
 
 export class CustomerCreateOrUpdateDTO {
 	@Expose()
 	@IsNumber()
-	private id?: number | null;
+	id?: number | null;
 
 	@Expose()
-	@IsObject()
-	private userId: number | null;
-
-	@Expose()
-	@IsString()
-	private email: string | null;
+	@IsNumber()
+	userId: number | null;
 
 	@Expose()
 	@IsString()
-	private name: string | null;
+	email: string | null;
+
+	@Expose()
+	@IsString()
+	name: string | null;
 
 	constructor(id?: number, userId?: number, email?: string, name?: string) {
 		this.id = id || null;

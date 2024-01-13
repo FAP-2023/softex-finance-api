@@ -4,6 +4,7 @@ import { ICustomerRepository } from "../repositories/ICustomer.repository";
 import { IUserRepository } from "../repositories/Iuser.repository";
 import { CustomerDTO } from "../controllers/customer/dto/CustomerDTO";
 import { ICustomerService } from "./Icustomer.service";
+import { CustomerCreateOrUpdateDTO } from "../controllers/customer/dto/CustomerCreateOrUpdateDTO";
 
 export class CustomerService implements ICustomerService {
 	private customerRepository: ICustomerRepository;
@@ -17,12 +18,12 @@ export class CustomerService implements ICustomerService {
 		this.userRepository = userRepository;
 	}
 
-	public async create(customerDTO: any): Promise<any> {
-		const user = await this.userRepository.findOneById(customerDTO.userId);
+	public async create(customerDTO: CustomerCreateOrUpdateDTO): Promise<any> {
+		const user = await this.userRepository.findOneById(customerDTO.userId as number);
 		if (!user) {
 			throw new Error("User not found");
 		}
-		const foundCustomer = await this.customerRepository.getOneByEmail(customerDTO.email);
+		const foundCustomer = await this.customerRepository.getOneByEmail(customerDTO.email as string);
 		if(foundCustomer){
 			throw new Error("Customer already exists");
 		}
@@ -55,7 +56,7 @@ export class CustomerService implements ICustomerService {
 		return dto;
 	}
 
-	public async update(customerDTO: CustomerDTO): Promise<CustomerDTO> {
+	public async update(customerDTO: CustomerCreateOrUpdateDTO): Promise<CustomerDTO> {
 		const customer = await this.customerRepository.getById(
 			customerDTO.id as number
 		);

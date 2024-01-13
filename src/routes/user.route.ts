@@ -16,13 +16,13 @@ export const UserRoutes = (): Router => {
 		(req, res) => userController.createrUser(req, res)
 	);
 	router.get(
-		"/:id",
+		"/get/:id",
 		(req, res, next) => checkAuthMiddleware(req, res, next),
 		(req, res, next) => isRequestedUserMiddleware(req, res, next),
 		(req, res) => userController.getUserById(req, res)
 	);
 	router.get(
-		"/:email",
+		"/getByEmail/:email",
 		(req, res, next) => checkAuthMiddleware(req, res, next),
 		(req, res, next) => isRequestedUserMiddleware(req, res, next),
 		(req, res) => userController.getUserByEmail(req, res)
