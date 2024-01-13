@@ -27,4 +27,27 @@ export class AuthController {
       });
     }
   }
+
+  async handleRequestPasswordReset(req: Request, res: Response) {
+    try {
+      const data = req.body;
+      if (!data.email) {
+        return res.sendStatus(400);
+      }
+      const token = await this.authService.handleRequestPasswordReset(
+        data.email
+      );
+      if (!token) {
+        throw new Error("Error generating token");
+      }
+      return res.status(200).json({
+        message: "Email sent",
+      });
+      
+    } catch (error) {
+      return res.status(400).json({
+        message: error,
+      });
+    }
+  }
 }

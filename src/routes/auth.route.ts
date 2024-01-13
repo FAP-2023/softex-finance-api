@@ -3,5 +3,6 @@ import { authController } from "../factories/auth.factory";
 export function authRoutes(){
     const router = Router();
     router.post('/login', authController.handleLogin)
+    router.post('/password/reset', authController.handleRequestPasswordReset)
     return router;
 }
