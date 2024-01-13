@@ -9,6 +9,10 @@ import { ITransactionsController } from "../controllers/transactions/Itransactio
 import { TransactionController } from "../controllers/transactions/transactions.controller";
 import { userRepository } from "./user.factory";
 import { AppDataSource } from "../database/app-data-source";
+import { IProductsRepository } from "../repositories/Iproducts.repository";
+import { ICustomerRepository } from "../repositories/ICustomer.repository";
+import { productsRepository } from "./products.factory";
+import { customerRepository } from "./customer.factory";
 
 
 class TransactionsFactory {
@@ -17,8 +21,8 @@ class TransactionsFactory {
         return transactionsRepository;
     }
 
-    public static createTransactionsService(transactionsRepository:ITransactionsRepository, userRepository:IUserRepository):ITransactionsService{
-        const transactionsService:ITransactionsService = new TransactionService(transactionsRepository,userRepository);
+    public static createTransactionsService(transactionsRepository:ITransactionsRepository, userRepository:IUserRepository,productRepository:IProductsRepository,customerRepository:ICustomerRepository):ITransactionsService{
+        const transactionsService:ITransactionsService = new TransactionService(transactionsRepository,userRepository,productRepository,customerRepository);
         return transactionsService;
     }
 
@@ -29,5 +33,5 @@ class TransactionsFactory {
 }
 
 export const transactionsRepository = TransactionsFactory.createTransactionsRepository(AppDataSource.getRepository(Transaction));
-export const transactionsService = TransactionsFactory.createTransactionsService(transactionsRepository,userRepository);
+export const transactionsService = TransactionsFactory.createTransactionsService(transactionsRepository,userRepository,productsRepository,customerRepository);
 export const transactionsController = TransactionsFactory.createTransactionsController(transactionsService);

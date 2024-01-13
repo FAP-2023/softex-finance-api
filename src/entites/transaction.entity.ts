@@ -1,8 +1,4 @@
-import {
-  Column,
-  Entity,
-  PrimaryGeneratedColumn
-} from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 import { AbstractEntity } from "./AbstractEntity";
 import { ManyToOne } from "typeorm";
 import { JoinColumn } from "typeorm";
@@ -13,36 +9,42 @@ import { Product } from "./product.entity";
 // Modelo para a tabela 'transactions'
 @Entity("transactions")
 export class Transaction extends AbstractEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+	@PrimaryGeneratedColumn()
+	id: number;
 
-  @Column({ type: "integer" })
-  user_id: number;
+	@Column({ type: "integer" })
+	user_id: number;
 
-  @Column({ type: "integer" })
-  customer_id: number;
+	@Column({ type: "integer" })
+	customer_id: number;
 
-  @Column({ type: "float" })
-  amount: number;
+	@Column({ type: "float" })
+	amount: number;
 
-  @Column({ type: "varchar" })
-  type: string;
+	@Column({ type: "varchar" })
+	type: string;
 
-  @Column({ type: "timestamp", nullable: true })
-  executed_at: Date;
+	@Column({ type: "timestamp", nullable: true })
+	executed_at: Date;
 
-  @Column({ type: "timestamp", nullable: true })
-  expected_at: Date;
+	@Column({ type: "timestamp", nullable: true })
+	expected_at: Date;
 
-  @ManyToOne(() => User)
-  @JoinColumn({ name: "user_id" })
-  user: User;
+	@ManyToOne(() => User, {
+		cascade: true,
+	})
+	@JoinColumn({ name: "user_id" })
+	user: User;
 
-  @ManyToOne(() => Customer)
-  @JoinColumn({ name: "customer_id" })
-  customer: Customer;
+	@ManyToOne(() => Customer, {
+		cascade: true,
+	})
+	@JoinColumn({ name: "customer_id" })
+	customer: Customer;
 
-  @ManyToOne(() => Product)
-  @JoinColumn({ name: "product_id" })
-  product: Product;
+	@ManyToOne(() => Product, {
+		cascade: true,
+	})
+	@JoinColumn({ name: "product_id" })
+	product: Product;
 }

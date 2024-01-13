@@ -1,19 +1,28 @@
-import { plainToClass, plainToInstance } from "class-transformer";
+import { plainToInstance } from "class-transformer";
 import { TransactionCreateOrUpdateDTO } from "../controllers/transactions/dto/TransactionCreateOrUpdateDTO";
 import { Transaction } from "../entites/transaction.entity";
 import { ITransactionsRepository } from "../repositories/Itransactions.repository";
 import { IUserRepository } from "../repositories/Iuser.repository";
 import { ITransactionsService } from "./Itransactions.service";
+import { IProductsRepository } from "../repositories/Iproducts.repository";
+import { ICustomerRepository } from "../repositories/ICustomer.repository";
 
 export class TransactionService implements ITransactionsService {
 	private transactionRepository: ITransactionsRepository;
 	private userRepository: IUserRepository;
+	private productRepository: IProductsRepository;
+	private customerRepository: ICustomerRepository;
+
 	constructor(
 		transactionRepository: ITransactionsRepository,
-		userRepository: IUserRepository
+		userRepository: IUserRepository,
+		productRepository: IProductsRepository,
+		customerRepository: ICustomerRepository
 	) {
 		this.transactionRepository = transactionRepository;
 		this.userRepository = userRepository;
+		this.productRepository = productRepository;
+		this.customerRepository = customerRepository;
 	}
 
 	async createTransaction(
@@ -23,6 +32,14 @@ export class TransactionService implements ITransactionsService {
 			const foundUser = await this.userRepository.findOneById(
 				transaction.user_id
 			);
+			const foundProduct = await this.productRepository.findById(transaction.product_id as number);
+			const foundCustomer = await this.customerRepository.getById(transaction.customer_id);
+			if (!foundProduct) {
+				throw new Error("Product not found");
+			}
+			if (!foundCustomer) {
+				throw new Error("Customer not found");
+			}
 			if (!foundUser) {
 				throw new Error("User not found");
 			}
@@ -96,7 +113,7 @@ export class TransactionService implements ITransactionsService {
 	): Promise<Transaction | undefined> {
 		try {
 			const foundTransaction = await this.transactionRepository.findById(
-				transaction.id
+				transaction.id as number
 			);
 			if (!foundTransaction) {
 				throw new Error("Transaction not found");
