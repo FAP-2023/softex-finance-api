@@ -7,9 +7,13 @@ export class ProductsRepository implements IProductsRepository {
 	constructor(repository: Repository<Product>) {
 		this.repository = repository;
 	}
-	async findAll(): Promise<Product[]> {
+	async findAll(userId:number): Promise<Product[]> {
 		try {
-			const foundProducts = await this.repository.find();
+			const foundProducts = await this.repository.find({
+				where:{
+					user_id:userId
+				}
+			});
 			if (!foundProducts) {
 				throw new Error("Error fetching products");
 			}

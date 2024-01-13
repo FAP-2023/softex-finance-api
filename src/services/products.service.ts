@@ -47,9 +47,9 @@ export class ProductService implements IProductsService {
 		}
 	}
 
-	async getAllProducts(): Promise<Product[]> {
+	async getAllProducts(userId:number): Promise<Product[]> {
 		try {
-			const foundProducts = await this.productRepository.findAll();
+			const foundProducts = await this.productRepository.findAll(userId);
 			if (!foundProducts) {
 				throw new Error("Error fetching products");
 			}

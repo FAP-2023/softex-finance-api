@@ -33,7 +33,8 @@ export class ProductController implements IProductsController{
 
     async getAllProducts(req: Request, res: Response) {
         try {
-            const products = await this.productService.getAllProducts();
+            const userId = req.locals.userId;
+            const products = await this.productService.getAllProducts(userId);
             return res.status(200).json({ ok: true, products });
         } catch (error) {
             return res.status(400).json({ message: "Erro ao buscar produtos" });

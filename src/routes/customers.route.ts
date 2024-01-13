@@ -36,7 +36,7 @@ export function customersRoutes() {
 		(req:Request, res:Response, next:NextFunction) => customerController.delete(req, res, next)
 	);
 	router.get(
-		"/:id",
+		"/byId/:id",
 		(req, res, next) => checkAuthMiddleware(req, res, next),
 		(req, res, next) => customerController.getById(req, res, next)
 	);

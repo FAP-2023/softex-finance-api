@@ -13,7 +13,7 @@ export function ProductsRoutes() {
 		(req, res) => productsController.createProduct(req, res)
 	);
 	router.get(
-		"/",
+		"/getAll",
 		(req, res, next) => checkAuthMiddleware(req, res, next),
 		(req, res) => productsController.getAllProducts(req, res)
 	);
