@@ -1,5 +1,6 @@
 import { Transaction } from "../entites/transaction.entity";
 import { TransactionCreateOrUpdateDTO } from "../controllers/transactions/dto/TransactionCreateOrUpdateDTO";
+import { TransactionDTO } from "../controllers/transactions/dto/TransactionDTO";
 
 
 export interface ITransactionsService {
@@ -8,6 +9,6 @@ export interface ITransactionsService {
     createTransaction(transaction: TransactionCreateOrUpdateDTO): Promise<TransactionCreateOrUpdateDTO>;
     updateTransaction(transaction: TransactionCreateOrUpdateDTO): Promise<Transaction | undefined>;
     deleteTransaction(id: number): Promise<boolean>;
-    findTransactionByUserId(userId: number): Promise<TransactionCreateOrUpdateDTO[]>;
+    findTransactionByUserId(userId: number): Promise<TransactionDTO[]>;
     countAllTransactionsByUserId(userId: number): Promise<number>;
 }

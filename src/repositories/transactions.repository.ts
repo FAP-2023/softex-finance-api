@@ -79,6 +79,7 @@ export class TransactionsRepository implements ITransactionsRepository {
 				where: {
 					user_id: userId,
 				},
+                relations: ["user", "customer", "product"],
 			});
 			return foundTransactions;
 		} catch (error:any) {

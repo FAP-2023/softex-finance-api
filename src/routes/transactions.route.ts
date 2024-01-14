@@ -16,7 +16,7 @@ export function TransactionsRoutes() {
     router.get(
 		"/",
 		(req, res, next) => checkAuthMiddleware(req, res, next),
-		(req, res) => transactionsController.getAllTransactions(req, res)
+		(req, res) => transactionsController.findTransactionByUserId(req, res)
 	);
     router.get(
 		"/getById/:id",

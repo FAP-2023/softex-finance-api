@@ -66,7 +66,7 @@ export class TransactionController implements ITransactionsController {
     }
 
     async findTransactionByUserId(req: Request, res: Response) {
-        const id = Number(req.params.id);
+        const id = Number(req.locals.userId);
         if(!id){
             return res.status(400).json({ message: "Id não informado" });
         }

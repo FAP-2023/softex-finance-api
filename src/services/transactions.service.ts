@@ -6,6 +6,7 @@ import { IUserRepository } from "../repositories/Iuser.repository";
 import { ITransactionsService } from "./Itransactions.service";
 import { IProductsRepository } from "../repositories/Iproducts.repository";
 import { ICustomerRepository } from "../repositories/ICustomer.repository";
+import { TransactionDTO } from "../controllers/transactions/dto/TransactionDTO";
 
 export class TransactionService implements ITransactionsService {
 	private transactionRepository: ITransactionsRepository;
@@ -131,7 +132,7 @@ export class TransactionService implements ITransactionsService {
 		}
 	}
 
-	async findTransactionByUserId(userId: number): Promise<TransactionCreateOrUpdateDTO[]> {
+	async findTransactionByUserId(userId: number): Promise<TransactionDTO[]> {
 		try {
 			const foundTransactions =
 				await this.transactionRepository.findTransactionByUserId(
@@ -141,8 +142,10 @@ export class TransactionService implements ITransactionsService {
 				throw new Error("Error fetching transactions");
 			}
 			const foundTransactionsDtoList = foundTransactions.map(
-				(transaction) =>
-					plainToInstance(TransactionCreateOrUpdateDTO, transaction)
+				(transaction) =>{
+					const dto = new TransactionDTO(transaction?.product?.name, transaction.amount, transaction.user.name, transaction.customer.name, transaction.expected_at);
+					return dto;
+				}
 			);
 			return foundTransactionsDtoList;
 		} catch (error: any) {
