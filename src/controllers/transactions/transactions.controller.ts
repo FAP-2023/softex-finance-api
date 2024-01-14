@@ -85,7 +85,7 @@ export class TransactionController implements ITransactionsController {
         }
         try {
             const count = await this.transactionService.countAllTransactionsByUserId(id);
-            return res.status(200).json({ ok: true, count });
+            return res.status(200).json({ ok: true, count: count });
         } catch (error:any) {
             return res.status(400).json({ message: error.message });
         }
