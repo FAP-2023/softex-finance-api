@@ -46,6 +46,7 @@ export class TransactionService implements ITransactionsService {
 			}
 			const prod = new Transaction();
 			Object.assign(prod, transaction);
+			prod.product = foundProduct;
 			prod.amount = transaction.amount;
 			prod.type = transaction.type;
 
