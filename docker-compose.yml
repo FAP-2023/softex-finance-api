@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  mariadb:
+    image: mariadb
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=finans
+      - MYSQL_USER=finans
+      - MYSQL_PASSWORD=finans
+      - MYSQL_DATABASE=finans

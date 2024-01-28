@@ -3,36 +3,65 @@ import { createServer } from "http";
 import "dotenv/config";
 import { startDatabase } from "./database/app-data-source";
 import "reflect-metadata";
-import { UserRoutes } from "./routes/user.route";
-import { authRoutes } from "./routes/auth.route";
-import { ProductsRoutes } from "./routes/products.route";
-import { customersRoutes } from "./routes/customers.route";
-import { TransactionsRoutes } from "./routes/transactions.route";
+import * as _ from 'lodash'
 import cors from "cors";
+import { appRoutes } from "./utils/rotesInitializer";
+import { RouteInit } from "./utils/IRouteInit";
 
-async function startApp() {
-  try {
-    const app = express();
-    app.use(express.json());
+class App{
+  private expressApp: express.Application;
+  private port: number;
+  private server: any;
 
-    app.use(cors());
+  constructor(port: number) {
+    this.expressApp = express();
+    this.configureApp();
+    this.port = port;
+    this.server = createServer(this.expressApp);
+  }
 
-    //configurando rotas
-    app.use("/users", UserRoutes());
-    app.use("/auth/", authRoutes());
-    app.use("/products", ProductsRoutes());
-    app.use("/customers", customersRoutes());
-    app.use("/transactions", TransactionsRoutes());
-    //--------------------
+  startServer(){
+    try {
+      this.server.listen(this.port, () => {
+        console.log("Servidor rodando na porta", this.port);
+      })
+    } catch (error:any) {
+      console.log(error.message)
+    }
+  }
 
-    app.use(express.urlencoded({ extended: true }));
-    const server = createServer(app);
-    server.listen(process.env.PORT, () => {
-      console.log("Servidor rodando na porta", process.env.PORT);
-    });
-    await startDatabase();
-  } catch (error) {
-    console.log(error);
+  async startDatabase(){
+    try {
+      startDatabase();
+    } catch (error:any) {
+      console.log(error.message)
+    }
+  }
+
+  configureApp(){
+    try {
+      this.expressApp.use(express.json());
+      this.expressApp.use(cors());
+      this.expressApp.use(express.urlencoded({ extended: true }));
+    } catch (error:any) {
+      console.log(error.message)
+    }
+  }
+
+  configureRoutes(){
+    try {
+      _.forEach(appRoutes, (element:RouteInit) => {
+        console.log("Configurando rotas para", element.path)
+        this.expressApp.use(element.path, element.routes);
+      })
+    } catch (error:any) {
+      console.log(error.message)
+    }
   }
 }
-startApp();
+
+const app = new App(3000);
+app.configureApp();
+app.configureRoutes();
+app.startServer();
+app.startDatabase();
